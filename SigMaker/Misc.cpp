@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "Misc.h"
 
 Settings_t Settings;

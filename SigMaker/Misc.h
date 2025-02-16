@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Includes.h"
+#include "pch.h"
 
-#define IsValidEA( x ) x != 0 && x != BADADDR
+#define IsValidEA( x ) ((x) != NULL && (x) != BADADDR)
 
 enum ePatternType {
     PT_DIRECT,

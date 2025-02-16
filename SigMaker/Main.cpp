@@ -1,6 +1,6 @@
-#include "Includes.h"
+#include "pch.h"
 #include "Misc.h"
- 
+
 void ShowOptions( void )
 {
     ushort selectionType, keepUnsafeData, logLevel;
@@ -93,20 +93,34 @@ bool idaapi run( size_t /*arg*/ )
     return true;
 }
 
-int idaapi init( void )
+struct callee_vars_t : public plugmod_t
 {
-    Settings.Init( );
-    Settings.Load( "sigmaker.ini" );
+    virtual bool idaapi run(size_t arg) override;
+};
 
-    return PLUGIN_OK;
+bool idaapi callee_vars_t::run(size_t arg)
+{
+    return ::run(arg);
 }
 
-plugin_t PLUGIN = {
+static plugmod_t* idaapi init()
+{
+    processor_t& ph = PH;
+    if (ph.id != PLFM_386)
+        return nullptr; // only for x86
+
+    Settings.Init();
+    Settings.Load("sigmaker.ini");
+    return new callee_vars_t();
+}
+
+plugin_t PLUGIN = 
+{
     IDP_INTERFACE_VERSION,
-    PLUGIN_KEEP,
+    PLUGIN_MULTI,
     init,
     NULL,
-    run,
+    NULL,
     "Creates a unique signature",
     "SigMaker plugin",
     "SigMaker",

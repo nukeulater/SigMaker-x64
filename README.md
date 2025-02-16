@@ -2,7 +2,7 @@
 
 IDA SigMaker Plugin updated for the IDA Pro 7.0 SDK by [dude719](https://github.com/dude719).
 
-PLEASE NOTE: IDA Freeware 7.0 is **NOT** supported. 
+Updated to support IDA 9.0 by [nukeulater](https://github.com/nukeulater).
 
 Originally made by P4TR!CK
 
@@ -14,12 +14,8 @@ RIP GameDeception
 
 # Installation
 
-Visual Studio will expect the environment variable IDADIR to resolve to your IDA 7.0 installation directory.
-
-Visual Studio will also expect the SDK to be located at %IDADIR%\idasdk. Make sure these folders resolve in Windows properly before attempting to build the project.
+Visual Studio will expect the environment variable IDASDK to resolve to your IDA 9.0 SDK directory.
 
 # Running the build
 
-Because IDA no longer has a native 32-bit compiled version anymore, the Release/Debug scenarios are the build scripts for the 32-bit version of IDA and Release64/Debug64 are the build scripts for the 64-bit version.
-
-**Do not change the target platform from x64!**
+Because IDA 9.0 (somewhere after 7.0) no longer has a native 32-bit compiled version anymore, Release64/Debug64 are the build scripts for the 64-bit version.

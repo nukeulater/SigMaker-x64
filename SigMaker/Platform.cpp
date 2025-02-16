@@ -1,15 +1,6 @@
-// this file shall be used to implement platform dependant features
-
-// NT Platform
-#define __NT__
+#include "pch.h"
 
 #ifdef __NT__
-#include <Windows.h>
-
-#pragma comment(lib, "Kernel32.lib")
-#pragma comment(lib, "ida.lib")
-#pragma comment(lib, "pro.lib")
-
 bool TextToClipboard( const char* pszText )
 {
     bool bResult = false;
@@ -51,4 +42,4 @@ bool TextToClipboard( const char* pszText )
 {
     return false; // got a mac or linux?
 }
-#endif // __NT__*/
+#endif // #ifdef __NT__
